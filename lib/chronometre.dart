@@ -14,6 +14,7 @@ class _ChronometreState extends State<Chronometre> {
   bool isRunning = false; // Indique si le chronomètre est en cours d'exécution
   int milliseconds = 0; // Temps écoulé en millisecondes
   Timer? timer; // Timer pour la mise à jour du temps
+  List<String> laps = []; // Liste des tours enregistrés
 
   // Démarre le chronomètre
   void startTimer() {
@@ -35,11 +36,20 @@ class _ChronometreState extends State<Chronometre> {
     }
   }
 
-  // Réinitialise le chronomètre
+  // Réinitialise le chronomètre et les laps
   void resetTimer() {
     stopTimer();
     setState(() {
       milliseconds = 0;
+      laps.clear();
+    });
+  }
+
+  // Ajoute un lap
+  void addLap() {
+    String lapTime = formatTime(milliseconds);
+    setState(() {
+      laps.add(lapTime);
     });
   }
 
@@ -82,7 +92,8 @@ class _ChronometreState extends State<Chronometre> {
               child: Center(
                 child: RichText(
                   text: TextSpan(
-                    text: formatTime(milliseconds).split(' ')[0], 
+                    text: formatTime(milliseconds)
+                        .split(' ')[0], // Minutes et secondes
                     style: TextStyle(
                       color: appSecondColor,
                       fontSize: 50.0,
@@ -90,7 +101,8 @@ class _ChronometreState extends State<Chronometre> {
                     ),
                     children: [
                       TextSpan(
-                        text: " ${formatTime(milliseconds).split(' ')[1]}", 
+                        text:
+                            " ${formatTime(milliseconds).split(' ')[1]}", // Millisecondes
                         style: TextStyle(
                           color: appSecondColor,
                           fontSize: 25.0,
@@ -101,7 +113,27 @@ class _ChronometreState extends State<Chronometre> {
                 ),
               ),
             ),
-            SizedBox(height: screenHeight / 10.0),
+            Container(
+              height: screenHeight/4,
+              width: screenWidth,
+              child: Expanded(
+                child: ListView.builder(
+                  itemCount: laps.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(
+                        "Lap ${index + 1}",
+                        style: TextStyle(color: appSecondColor),
+                      ),
+                      trailing: Text(
+                        laps[index],
+                        style: TextStyle(color: appSecondColor),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -111,7 +143,8 @@ class _ChronometreState extends State<Chronometre> {
           // Bouton de réinitialisation
           IconButton(
             onPressed: resetTimer,
-            icon: Icon(Icons.replay_outlined, color: appSecondColor, size: 30.0),
+            icon:
+                Icon(Icons.replay_outlined, color: appSecondColor, size: 30.0),
           ),
           // Bouton de démarrage/arrêt
           GestureDetector(
@@ -133,12 +166,10 @@ class _ChronometreState extends State<Chronometre> {
               ),
             ),
           ),
-          // Bouton futur (par exemple pour ajouter des laps)
+          // Bouton pour ajouter un lap
           IconButton(
-            onPressed: () {
-              // Ajouter une fonctionnalité ici (ex. un historique des laps)
-            },
-            icon: Icon(Icons.alarm_add, color: appSecondColor, size: 30.0),
+            onPressed: addLap,
+            icon: Icon(Icons.flag, color: appSecondColor, size: 30.0),
           ),
         ],
       ),
