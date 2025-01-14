@@ -1,8 +1,19 @@
 # chronometre_app
 
-Nouvelle application mobile avec Flutter .
+Nouvelle application mobile avec Flutter
 
-Cette application est en quelques sorte un chronomètre avec toutes ses fonctionnalitées.
+**Chronomètre App**  
+L'application *Chronomètre App* vous offre une expérience simple et intuitive pour mesurer le temps avec précision. Parfait pour les activités sportives, les études ou toute autre situation nécessitant un suivi du temps. Grâce à une interface épurée, vous pouvez démarrer, arrêter, et réinitialiser le chronomètre d'un simple geste. 
+
+Elle vous permet également de suivre les "laps" (tours) et de visualiser l'heure actuelle en temps réel, le tout dans une seule application. Chaque seconde est comptabilisée avec une précision milliseconde pour vous offrir des mesures exactes et fiables.
+
+**Fonctionnalités clés** :
+- **Chronomètre avec affichage millisecondes** : Suivi du temps avec précision à la milliseconde près.
+- **Affichage de l'heure actuelle** : Toujours visible, l'heure actuelle est mise à jour en temps réel.
+- **Gestion des laps** : Enregistrez vos tours de manière simple et consultez-les à tout moment.
+- **Contrôles intuitifs** : Démarrer, mettre en pause, réinitialiser et ajouter des laps en toute simplicité.
+
+*Chronomètre App* est l'application idéale pour les sportifs, les étudiants, ou toute personne ayant besoin d'un chronomètre fiable et facile à utiliser.
 
 ## Installation
 
