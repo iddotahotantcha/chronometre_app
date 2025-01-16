@@ -147,7 +147,7 @@ class _ChronometreState extends State<Chronometre> {
                 Icon(Icons.replay_outlined, color: appSecondColor, size: 30.0),
           ),
           // Bouton de démarrage/arrêt
-          GestureDetector(
+          InkWell(
             onTap: isRunning ? stopTimer : startTimer,
             child: Container(
               height: screenHeight / 15.0,
